@@ -65,12 +65,13 @@ void GetDirectoryContent(string path, int tab) {
 }
 
 int main(int argc, char* argv[]) {
-    //argv[1];
-    string path = "D:/Marcovnickov/C++";
+    string path;
     errno_t err;
     err = fopen_s(&outFile, "dir.json", "w");
     if (err == 0){
+        path = argc > 1 ? argv[1] : "";
         if (is_directory(status(path))) {
+            path = argv[1];
             GetDirectoryContent(path, 0);
         } else {
             std::fprintf(outFile, "{ }");
